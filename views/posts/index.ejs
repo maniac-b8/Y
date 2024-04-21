@@ -1,0 +1,13 @@
+<%- include('../partials/header') %>
+
+<table>
+    <section id="show-page">
+        <% posts.forEach(function(post) { %> 
+            <div><%= post.userName %></div> 
+            <div>Posted: <%= post.createdAt.toLocaleDateString() %></div><br>
+            <div><%= post.content %></div><br>
+        <% }); %>
+    </section>
+</table>
+
+
