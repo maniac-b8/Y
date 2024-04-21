@@ -1,5 +1,7 @@
 <%- include('../partials/header') %>
-
+<form action="/posts" method="POST">
+    <textarea name="content" rows="4" cols="50" placeholder="What's on your mind?"></textarea><br>
+    <button type="submit">Post</button>
 <table>
     <section id="show-page">
         <% posts.forEach(function(post) { %> 
