@@ -17,3 +17,37 @@ a {
 .login img {
   height: 30px;
 }
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* Button background color */
+  color: #ffffff; /* Button text color */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Hover effect */
+.button:hover {
+  background-color: #0056b3; /* Button background color on hover */
+}
+
+.button, .delete-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* Button background color */
+  color: #ffffff; /* Button text color */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Hover effect */
+.button:hover, .delete-button:hover {
+  background-color: #0056b3; /* Button background color on hover */
+}

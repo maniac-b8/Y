@@ -7,13 +7,14 @@ module.exports = {
     new: newPost,
     create,
     edit,
-    update
+    update,
+    delete: deletePost
 };
 
 async function index(req, res) {
     try {
         const posts = await Post.find({});
-        res.render('posts/index', { posts }); // Pass the posts variable to the view
+        res.render('posts/index', { posts }); 
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
@@ -25,11 +26,14 @@ async function show(req, res) {
     res.render('posts/show', { title: 'All Posts', post }) // add comments after post at end
 }
 
+
 async function create(req, res) {
     for (const key in req.body) {
         if (req.body[key] === '') delete req.body[key];
     }
+    console.log(req.body);
     try {
+        console.log('HALP')
         req.body.author = req.user._id;
         req.body.userName = req.user.name;
         req.body.userAvatar = req.user.avatar;
@@ -39,6 +43,29 @@ async function create(req, res) {
     } catch (err) {
         console.log(err);
         res.render('posts/show', { errorMsg: err.message });
+    }
+}
+
+async function deletePost(req, res) {
+    try {
+        console.log('Deleting post ID:', req.params.id);
+        console.log('User ID:', req.user._id);
+
+        const deletedPost = await Post.findOneAndDelete({
+            _id: req.params.id,
+            author: req.user._id
+        });
+
+        console.log('Deleted Post:', deletedPost);
+
+        if (!deletedPost) {
+            return res.status(404).send('Post not found or unauthorized to delete.');
+        }
+
+        res.redirect('/posts');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
     }
 }
 
@@ -65,9 +92,10 @@ async function update(req, res) {
         }
         
         post.content = req.body.content;
+        post.updatedAt = new Date();
         await post.save();
 
-        res.redirect(`/posts`);
+        res.redirect(`/`);
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');

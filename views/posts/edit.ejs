@@ -3,7 +3,7 @@
 
 <h1>Edit Post</h1>
 
-<form action="/posts/<%= post._id %>" method="POST">
+<form action="/posts/<%= post._id %>?_method=PUT" method="POST">
     <div>
         <label for="content">Content:</label><br>
         <textarea id="content" name="content" rows="4" cols="50"><%= post.content %></textarea>

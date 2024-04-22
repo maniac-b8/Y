@@ -1,7 +1,22 @@
-<section id="show-page">
-    <div><%= post.author %></div>
-    <div>Posted: </div>
-    <div><%= post.createdAt %></div><br>
-    |
-    <div><%= post.content %></div>
-   </section>
+<%- include('../partials/header') %>
+<table>
+    <section id="show-page">
+        <h2>All Posts</h2>
+        <% posts.forEach(function(post) { %> 
+            <div><%= post.userName %></div> 
+            <div>Posted: <%= post.createdAt.toLocaleDateString() %></div><br>
+            <% if (post.updatedAt) { %> <!-- Check if updatedAt field exists -->
+                <div>Edited At: <%= post.updatedAt.toLocaleDateString() %> <%= post.updatedAt.toLocaleTimeString() %></div>
+            <% } %>
+            <div><%= post.content %></div><br>
+            <% if (currentUser && post.author.equals(currentUser._id)) { %> <!-- Check if the current user is the author of the post -->
+                <a href="/posts/<%= post._id %>/edit" class="button">Edit</a>
+                <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                    <button type="submit">X</button>
+                  </form>
+            <% } %>
+            <br>
+        <% }); %>
+    </section>
+</table>
+<%- include('../partials/footer') %>

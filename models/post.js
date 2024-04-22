@@ -4,21 +4,19 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema({
   content: {
     type: String,
-    required: true,
     minlength: 1,
     maxlength: 280 
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User', 
-    required: true
   },
   userName: String,
-  userAvatar: String
+  userAvatar: String,
+ 
+},
+{
+  timestamps: true
 });
 
 module.exports = mongoose.model('Post', postSchema);

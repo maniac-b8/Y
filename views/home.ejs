@@ -1,9 +1,12 @@
 <%- include('./partials/header') %>
-    
-<% if (user) { %>
-    <h2>Welcome Back!</h2>
+
+<% if (currentUser) { %>
+    <script>
+        window.location.href = '/posts'; // Redirect to the posts/index page
+    </script>
 <% } else { %>
-    <p>Please log in or sign up  to make posts!.</p>
+    <h2>Welcome Back!</h2>
+    <p>Please log in or sign up to make posts!</p>
 <% } %>
 
-    <%- include('./partials/footer') %>
+<%- include('./partials/footer') %>
