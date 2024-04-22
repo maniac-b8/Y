@@ -42,6 +42,11 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user; // Make currentUser available in views
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter)

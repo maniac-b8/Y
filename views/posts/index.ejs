@@ -4,10 +4,15 @@
     <button type="submit">Post</button>
 <table>
     <section id="show-page">
+        <h2>All Posts</h2>
         <% posts.forEach(function(post) { %> 
             <div><%= post.userName %></div> 
             <div>Posted: <%= post.createdAt.toLocaleDateString() %></div><br>
             <div><%= post.content %></div><br>
+            <% if (currentUser && post.author.equals(currentUser._id)) { %> <!-- Check if the current user is the author of the post -->
+                <a href="/posts/<%= post._id %>/edit">Edit</a> <!-- Display edit button -->
+            <% } %>
+            <br>
         <% }); %>
     </section>
 </table>

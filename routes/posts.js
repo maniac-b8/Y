@@ -11,5 +11,9 @@ router.get('/new', ensureLoggedIn, postsCtrl.new);
 router.get ('/:id', postsCtrl.show);
 // POST /posts
 router.post('/', ensureLoggedIn, postsCtrl.create);
+// GET /post/:id/edit
+router.get('/:id/edit', postsCtrl.edit);
+// POST /posts/:id
+router.post('/:id', postsCtrl.update);
 
 module.exports = router;

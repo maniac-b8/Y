@@ -5,7 +5,9 @@ module.exports = {
     index,
     show,
     new: newPost,
-    create
+    create,
+    edit,
+    update
 };
 
 async function index(req, res) {
@@ -42,4 +44,32 @@ async function create(req, res) {
 
 function newPost(req, res) {
     res.render('posts/new', { errorMsg: '' });
+}
+
+async function edit(req, res) {
+    try {
+        const post = await Post.findById(req.params.id);
+        res.render('posts/edit', { post });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    }
+}
+
+async function update(req, res) {
+    try {
+        const post = await Post.findById(req.params.id);
+        
+        if (!post.author.equals(req.user._id)) {
+            return res.status(403).send('Unauthorized');
+        }
+        
+        post.content = req.body.content;
+        await post.save();
+
+        res.redirect(`/posts`);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    }
 }
