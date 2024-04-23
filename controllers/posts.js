@@ -32,7 +32,6 @@ async function create(req, res) {
   }
   console.log(req.body);
   try {
-    console.log("HALP");
     req.body.author = req.user._id;
     req.body.userName = req.user.name;
     req.body.userAvatar = req.user.avatar;
@@ -47,20 +46,13 @@ async function create(req, res) {
 
 async function deletePost(req, res) {
   try {
-    console.log("Deleting post ID:", req.params.id);
-    console.log("User ID:", req.user._id);
-
     const deletedPost = await Post.findOneAndDelete({
       _id: req.params.id,
       author: req.user._id,
     });
-
-    console.log("Deleted Post:", deletedPost);
-
     if (!deletedPost) {
       return res.status(404).send("Post not found or unauthorized to delete.");
     }
-
     res.redirect("/posts");
   } catch (err) {
     console.error(err);

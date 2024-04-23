@@ -1,29 +1,61 @@
 <%- include('../partials/header') %>
-<div class ="container">
-<form action="/posts" method="POST">
-    <textarea name="content" rows="4" cols="50" placeholder="What's on your mind?"></textarea><br>
-    <button type="submit">Post</button>
-</form>
-<table>
-    <section id="show-page">
-        <h2>All Posts</h2>
-        <% posts.forEach(function(post) { %> 
-            <div><%= post.userName %></div> 
-            <div>Posted: <%= post.createdAt.toLocaleDateString() %></div><br>
-            <% if (post.updatedAt) { %> 
-                <div>Edited At: <%= post.updatedAt.toLocaleDateString() %> <%= post.updatedAt.toLocaleTimeString() %></div>
-            <% } %>
-            <div><%= post.content %></div><br>
-            <% if (currentUser && post.author.equals(currentUser._id)) { %> 
-                <a href="/posts/<%= post._id %>/edit" class="button">Edit</a>
-                <form action="/posts/<%= post._id %>?_method=DELETE" method="POST" style="display: inline;">
-                    <button type="submit" class="button">Delete</button>
+<div class="container">
+    <form action="/posts" method="POST">
+        <div class="post-form">
+            <textarea name="content" rows="4" placeholder="What's on your mind?"></textarea>
+            <button type="submit">Post</button>
+        </div>
+    </form>
+    <table>
+        <section id="show-page">
+            <h2>All Posts</h2>
+            <% posts.forEach(function(post) { %> 
+                <% if (currentUser && post.author.equals(currentUser._id)) { %> 
+                    <div class="dropdown">
+                        <button class="dropdown-btn">&#8942;</button>
+                        <div class="dropdown-content">
+                            <a href="/posts/<%= post._id %>/edit" class="button">Edit Post</a>
+                            <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                                <button type="submit" class="button">Delete Post</button>
+                            </form>
+                        </div>
+                    </div>
+                <% } %>
+                <div class="post-show">
+                    <div><%= post.userName %></div> 
+                    <div>Posted: <%= post.createdAt.toLocaleDateString() %></div><br>
+                    <div><%= post.content %></div>
+                <br>
+                <h3>Comments</h3>
+                <ul>
+                    <% post.comments.forEach(function(comment) { %>
+                        <li>
+                            <% if (currentUser && (currentUser._id.equals(comment.author) || currentUser._id.equals(post.author))) { %>
+                                <div class="dropdown">
+                                    <button class="dropdown-btn">&#8942;</button>
+                                    <div class="dropdown-content">
+                                        <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                            <button type="submit" class="button">Delete Comment</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            <% } %>
+                            <div><%= comment.userName %></div>
+                            <div>Posted: <%= post.createdAt.toLocaleDateString() %></div><br>
+                            <div><%= comment.content %></div>
+                        </li>
+                    <% }); %>
+                </ul>
+                </div>
+                <% if (currentUser) { %>
+                <form action="/posts/<%= post._id %>/comments" method="POST">
+                    <input type="text" name="content" placeholder="Add a comment">
+                    <button type="submit">Add Comment</button>
                 </form>
-            <% } %>
-            <br>
-        <% }); %>
-    </section>
-</table>
+                <% } %>
+                <br>
+            <% }); %>
+        </section>
+    </table>
 </div>
 <%- include('../partials/footer') %>
-
