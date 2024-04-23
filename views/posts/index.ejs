@@ -9,7 +9,7 @@
     <table>
         <section id="show-page">
             <h2>All Posts</h2>
-            <% posts.forEach(function(post) { %> 
+            <% posts.slice().reverse().forEach(function(post) { %> <!-- Reverse the order of posts -->
                 <% if (currentUser && post.author.equals(currentUser._id)) { %> 
                     <div class="dropdown">
                         <button class="dropdown-btn">&#8942;</button>
@@ -25,33 +25,37 @@
                     <div><%= post.userName %></div> 
                     <div>Posted: <%= post.createdAt.toLocaleDateString() %></div><br>
                     <div><%= post.content %></div>
-                <br>
-                <h3>Comments</h3>
-                <ul>
-                    <% post.comments.forEach(function(comment) { %>
-                        <li>
-                            <% if (currentUser && (currentUser._id.equals(comment.author) || currentUser._id.equals(post.author))) { %>
-                                <div class="dropdown">
-                                    <button class="dropdown-btn">&#8942;</button>
-                                    <div class="dropdown-content">
-                                        <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                                            <button type="submit" class="button">Delete Comment</button>
-                                        </form>
+                    <br>
+                    <div class = "comments"><h3>Comments</h3></div>
+                    <ul>
+                        <% post.comments.forEach(function(comment) { %>
+                            <li>
+                                <% if (currentUser && (currentUser._id.equals(comment.author) || currentUser._id.equals(post.author))) { %>
+                                    <div class="dropdown">
+                                        <button class="dropdown-btn">&#8942;</button>
+                                        <div class="dropdown-content">
+                                            <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                                <button type="submit" class="button">Delete Comment</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            <% } %>
-                            <div><%= comment.userName %></div>
-                            <div>Posted: <%= post.createdAt.toLocaleDateString() %></div><br>
-                            <div><%= comment.content %></div>
-                        </li>
-                    <% }); %>
-                </ul>
+                                <% } %>
+                                <div class ="comments">
+                                <div><%= comment.userName %></div>
+                                <div>Posted: <%= post.createdAt.toLocaleDateString() %></div><br>
+                                <div><%= comment.content %></div><br>
+                            </div>
+                            </li>
+                        <% }); %>
+                    </ul>
                 </div>
                 <% if (currentUser) { %>
+                <div class ="comment-form">
                 <form action="/posts/<%= post._id %>/comments" method="POST">
                     <input type="text" name="content" placeholder="Add a comment">
                     <button type="submit">Add Comment</button>
                 </form>
+                </div>
                 <% } %>
                 <br>
             <% }); %>

@@ -13,6 +13,19 @@ a {
   box-sizing: border-box;
 }
 
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  text-align: center;
+}
+
 nav {
   position: fixed; 
   top: 0; 
@@ -82,6 +95,7 @@ button[type="submit"] {
 
 .post-show {
   border: 1px solid black;
+  text-align: center;
 }
 
 .post {
@@ -156,16 +170,24 @@ button[type="submit"] {
 }
 
 .post-form {
-  position: relative; /* Make the container relatively positioned */
+  position: relative; 
 }
 
 .post-form textarea {
-  width: 100%; /* Take up full width */
-  height: 100px; /* Example height, adjust as needed */
+  width: 100%; 
+  height: 100px; 
 }
 
 .post-form button[type="submit"] {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.comments {
+  border: 1px solid black;
+}
+
+.comment-form {
+  text-align: center;
 }
