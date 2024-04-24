@@ -1,4 +1,9 @@
 <%- include('../partials/header') %>
+<% if (!currentUser) { %>
+    <script>
+        window.location.href = '/';
+    </script>
+<% } else { %>
 <div class="container">
     <form action="/posts" method="POST">
         <div class="post-form">
@@ -9,8 +14,9 @@
     <table>
         <section id="show-page">
             <h2>All Posts</h2>
-            <% posts.slice().reverse().forEach(function(post) { %> <!-- Reverse the order of posts -->
+            <% posts.slice().reverse().forEach(function(post) { %> 
                 <% if (currentUser && post.author.equals(currentUser._id)) { %> 
+                    <div class="post-show">
                     <div class="dropdown">
                         <button class="dropdown-btn">&#8942;</button>
                         <div class="dropdown-content">
@@ -21,12 +27,11 @@
                         </div>
                     </div>
                 <% } %>
-                <div class="post-show">
-                    <div><%= post.userName %></div> 
-                    <div>Posted: <%= post.createdAt.toLocaleDateString() %></div><br>
+                   <div class = "post-detail"><%= post.userName %> | <%= post.createdAt.toLocaleDateString() %><br>
                     <div><%= post.content %></div>
+                   </div>
                     <br>
-                    <div class = "comments"><h3>Comments</h3></div>
+                    <div class = "comments"><h3>Comments:</h3></div>
                     <ul>
                         <% post.comments.forEach(function(comment) { %>
                             <li>
@@ -40,9 +45,9 @@
                                         </div>
                                     </div>
                                 <% } %>
-                                <div class ="comments">
-                                <div><%= comment.userName %></div>
-                                <div>Posted: <%= post.createdAt.toLocaleDateString() %></div><br>
+                                <div class ="comment-content">
+                                <div><%= comment.userName %> - <%= post.createdAt.toLocaleDateString() %></div>
+                                <br>
                                 <div><%= comment.content %></div><br>
                             </div>
                             </li>
@@ -63,3 +68,4 @@
     </table>
 </div>
 <%- include('../partials/footer') %>
+<% } %>
