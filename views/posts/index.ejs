@@ -14,9 +14,9 @@
     <table>
         <section id="show-page">
             <h2>All Posts</h2>
+            <div class="post-show">
             <% posts.slice().reverse().forEach(function(post) { %> 
                 <% if (currentUser && post.author.equals(currentUser._id)) { %> 
-                    <div class="post-show">
                     <div class="dropdown">
                         <button class="dropdown-btn">&#8942;</button>
                         <div class="dropdown-content">
@@ -27,18 +27,18 @@
                         </div>
                     </div>
                 <% } %>
-                   <div class = "post-detail"><%= post.userName %> | <%= post.createdAt.toLocaleDateString() %><br>
-                    <div><%= post.content %></div>
+                   <div class = "post-detail"><img src="<%= post.userAvatar %>" alt="User Avatar"><%= post.userName %> | <%= post.createdAt.toLocaleDateString() %><br>
+                    <br><div><%= post.content %></div>
                    </div>
                     <br>
                     <div class = "comments"><h3>Comments:</h3></div>
                     <ul>
                         <% post.comments.forEach(function(comment) { %>
                             <li>
-                                <% if (currentUser && (currentUser._id.equals(comment.author) || currentUser._id.equals(post.author))) { %>
-                                    <div class="dropdown">
-                                        <button class="dropdown-btn">&#8942;</button>
-                                        <div class="dropdown-content">
+                                <% if (currentUser && currentUser._id.equals(post.comments.author)) { %>
+                                    <div class="cdropdown">
+                                        <button class="cdropdown-btn">&#8942;</button>
+                                        <div class="cdropdown-content">
                                             <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
                                                 <button type="submit" class="button">Delete Comment</button>
                                             </form>
