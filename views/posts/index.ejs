@@ -31,6 +31,17 @@
                 <% } %>
                    <div class = "post-detail"><img src="<%= post.userAvatar %>"  referrerpolicy="no-referrer" alt="User Avatar"><%= post.userName %><div class ="date"> <%= post.createdAt.toLocaleDateString() %></div><br>
                     <br><%= post.content %></div>
+                     <div class ="like">
+                        <form action="/posts/<%= post._id %>/like" method="POST">
+                            <button type="submit" class="button">
+                            <% if (post.likes.includes(currentUser._id)) { %>
+                                <img src="https://i.imgur.com/DNNKNQT.png" style="height:20px; width:20px">
+                            <% } else { %>
+                                <img src="https://i.imgur.com/xAU4Lop.png" style="height:20px; width:20px">
+                            <% } %>
+                            </button>
+                        </form>
+                            <p><%= post.likes.length %> Likes</p></div>
                     <br>
                     <div class = "comments"><h3>Comments:</h3></div>
                     <ul>

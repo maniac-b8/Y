@@ -29,6 +29,10 @@ const postSchema = new Schema({
   },
   userName: String,
   userAvatar: String,
+  likes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
  comments: [commentSchema]
 },
 {

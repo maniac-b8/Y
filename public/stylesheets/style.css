@@ -292,3 +292,20 @@ border-radius: 20px;
   font-size: small;
   white-space: nowrap;
 }
+
+.like {
+  margin-left: auto; 
+  display: flex; 
+  align-items: center; 
+}
+
+.like button {
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer;
+}
+
+.like p {
+  margin-left: 5px;
+  padding-top: 20px;
+}

@@ -15,6 +15,8 @@ router.post('/', ensureLoggedIn, postsCtrl.create);
 router.get('/:id/edit', postsCtrl.edit);
 // PUT /posts/:id
 router.put('/:id', postsCtrl.update);
+//POST Like Post
+router.post('/:id/like', ensureLoggedIn, postsCtrl.likePost);
 
 
 module.exports = router;
