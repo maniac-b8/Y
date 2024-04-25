@@ -1,18 +1,37 @@
+
 body {
   padding: 50px;
   padding-top: 60px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   background-color: rgb(22, 21, 21);
 }
 
 p {
   color: white;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+header{
+color: white;
+font-size: 40px;
+padding-top: 1px;
+padding-bottom: 5%;
+text-align: center;
+}
+
+h1 {
+  color: white;
+}
+
+label {
+  color: white;
 }
 
 h2 {
@@ -41,6 +60,7 @@ nav {
   color: white; 
   padding: 20px; 
   overflow-y: auto; 
+  font-size: 17px;
 }
 
 nav a {
@@ -112,6 +132,7 @@ button:hover {
   width: fit-content;
   padding: 10px;
   border-radius: 20px;
+  font-size: large;
 }
 
 .post {
@@ -203,11 +224,12 @@ border-radius: 20px;
 }
 
 .post-detail img {
-  width: 40px; /* Adjust the width according to your preference */
-  height: 40px; /* Adjust the height according to your preference */
-  margin-right: 2px; /* Adjust the margin to create space between the image and the username */
+  width: 60px; 
+  height: 60px; 
+  margin-right: 2px;
   top: 20px;
   border-radius: 20px;
+  border: 2px solid white;
 }
 
 
@@ -215,6 +237,7 @@ border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-bottom: 2px solid white;
 
 }
 
@@ -234,11 +257,26 @@ border-radius: 20px;
 
 
 .comment-form textarea {
-  width: 30%; 
-  height: 50px;
+  width: 30%;
+  height: 40px; 
   border-radius: 20px;
   background-color: #333;
   color: white
 }
+
+.comment-content img {
+  width: 60px; 
+  height: 60px; 
+  margin-right: 2px;
+  top: 20px;
+  border-radius: 20px;
+  border: 2px solid white;
+}
+
+.comment-content {
+  border-bottom: 2px solid white;
+  padding-top: 5px;
+}
+
 
 

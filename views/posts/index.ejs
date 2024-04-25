@@ -5,10 +5,12 @@
     </script>
 <% } else { %>
 <div class="container">
+    <header>Welcome to <img src ="https://i.imgur.com/fN9AOUq.png" style="height:50px; width:50px"></header>
+    <p>Because X was taken</p>
     <form action="/posts" method="POST">
         <div class="post-form">
             <textarea name="content" rows="4" placeholder="What's on your mind?"></textarea>
-            <button type="submit">Post</button>
+            <button type="submit"><img src="https://i.imgur.com/vxHd8A7.png" style="height:25px; width:25px"></button>
         </div>
     </form>
     <table>
@@ -20,14 +22,14 @@
                     <div class="dropdown">
                         <button class="dropdown-btn">&#8942;</button>
                         <div class="dropdown-content">
-                            <a href="/posts/<%= post._id %>/edit" class="button">Edit Post</a>
+                            <a href="/posts/<%= post._id %>/edit" class="button"><img src="https://i.imgur.com/ymDSw2z.png" style="height:20px; width:20px"></a>
                             <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-                                <button type="submit" class="button">Delete Post</button>
+                                <button type="submit" class="button"><img src="https://i.imgur.com/X4v69iE.png" style="height:20px; width:20px"></button>
                             </form>
                         </div>
                     </div>
                 <% } %>
-                   <div class = "post-detail"><img src="<%= post.userAvatar %>" alt="User Avatar"><%= post.userName %> | <%= post.createdAt.toLocaleDateString() %><br>
+                   <div class = "post-detail"><img src="<%= post.userAvatar %>"  referrerpolicy="no-referrer" alt="User Avatar"><%= post.userName %> | <%= post.createdAt.toLocaleDateString() %><br>
                     <br><%= post.content %></div>
                     <br>
                     <div class = "comments"><h3>Comments:</h3></div>
@@ -39,13 +41,13 @@
                                         <button class="dropdown-btn">&#8942;</button>
                                         <div class="dropdown-content">
                                             <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                                                <button type="submit" class="button">Delete Comment</button>
+                                                <button type="submit" class="button"><img src="https://i.imgur.com/X4v69iE.png" style="height:20px; width:20px"></button>
                                             </form>
                                         </div>
                                     </div>
                                 <% } %>
                                 <div class ="comment-content">
-                                    <div><%= comment.userName %> - <%= post.createdAt.toLocaleDateString() %></div>
+                                    <div><img src="<%= comment.userAvatar %>"  referrerpolicy="no-referrer" alt="User Avatar"><%= comment.userName %> - <%= post.createdAt.toLocaleDateString() %></div>
                                         <br>
                                     <div><%= comment.content %></div><br>
                                 </div>
@@ -57,7 +59,7 @@
                     <div class ="comment-form">
                         <form action="/posts/<%= post._id %>/comments" method="POST">
                             <textarea name="content" rows="4" placeholder="Add a comment"></textarea>
-                            <button type="submit">Add Comment</button>
+                            <button type="submit"><img src="https://i.imgur.com/vxHd8A7.png" style="height:20px; width:20px"></button>
                         </form>
                     </div>
                 <% } %>

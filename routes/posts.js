@@ -7,8 +7,6 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 router.get('/', postsCtrl.index);
 // DELETE /posts/:id
 router.delete('/:id', ensureLoggedIn, postsCtrl.delete);
-// GET /flights/new
-router.get('/new', ensureLoggedIn, postsCtrl.new);
 // GET /posts/:id (show)
 router.get ('/:id', postsCtrl.show);
 // POST /posts

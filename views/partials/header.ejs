@@ -5,14 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>Y</title>
   </head>
   <body>
     <nav>
-      <a href="/" class ="home">Home
-    </a><br>        
+      <img src ="https://i.imgur.com/fN9AOUq.png" style="height:35px; width:35px"><br>
+      <br><a href="/" class ="home"><img src="https://i.imgur.com/lYuKYMc.png" style="height:25px; width:25px">&nbsp;Home</a><br>        
            <% if (currentUser) { %>
-            <a href="/posts">All Posts</a><br>
-          <a href="/logout">LOG OUT</a><br>
+            <a href="/posts"><img src="https://i.imgur.com/CaoYY1e.png"style="height:25px; width:25px">&nbsp;All Posts</a><br>
+          <a href="/logout"><img src="https://i.imgur.com/GlXAXSS.png"style="height:25px; width:25px">&nbsp;Log Out</a><br>
         <% } else { %>
           <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
         <% } %>

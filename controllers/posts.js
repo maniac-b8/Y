@@ -4,7 +4,6 @@ const User = require("../models/user");
 module.exports = {
   index,
   show,
-  new: newPost,
   create,
   edit,
   update,
@@ -30,7 +29,6 @@ async function create(req, res) {
   for (const key in req.body) {
     if (req.body[key] === "") delete req.body[key];
   }
-  console.log(req.body);
   try {
     req.body.author = req.user._id;
     req.body.userName = req.user.name;
@@ -60,10 +58,6 @@ async function deletePost(req, res) {
   }
 }
 
-function newPost(req, res) {
-  res.render("posts/new", { errorMsg: "" });
-}
-
 async function edit(req, res) {
   try {
     const post = await Post.findById(req.params.id);
@@ -83,7 +77,6 @@ async function update(req, res) {
     }
 
     post.content = req.body.content;
-    post.updatedAt = new Date();
     await post.save();
 
     res.redirect(`/`);
