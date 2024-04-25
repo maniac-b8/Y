@@ -44,6 +44,11 @@ h3 {
   text-align: center;
   color: white;
 }
+footer {
+  text-align: center;
+  color: white;
+  bottom: 0;
+}
 
 ul {
   list-style-type: none;
@@ -88,6 +93,7 @@ nav .login img {
   justify-content: center;
   align-items: center;
   height: 34px;
+  font-size: medium;
 }
 
 .login img {
@@ -232,6 +238,10 @@ border-radius: 20px;
   border: 2px solid white;
 }
 
+.post-detail{
+  white-space: nowrap;
+}
+
 
 .comments {
   display: flex;
@@ -268,7 +278,6 @@ border-radius: 20px;
   width: 60px; 
   height: 60px; 
   margin-right: 2px;
-  top: 20px;
   border-radius: 20px;
   border: 2px solid white;
 }
@@ -276,7 +285,10 @@ border-radius: 20px;
 .comment-content {
   border-bottom: 2px solid white;
   padding-top: 5px;
+  align-items: center;
+  white-space: nowrap;
 }
-
-
-
+.date {
+  font-size: small;
+  white-space: nowrap;
+}

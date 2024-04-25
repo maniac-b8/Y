@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 <% } %>
-                   <div class = "post-detail"><img src="<%= post.userAvatar %>"  referrerpolicy="no-referrer" alt="User Avatar"><%= post.userName %> | <%= post.createdAt.toLocaleDateString() %><br>
+                   <div class = "post-detail"><img src="<%= post.userAvatar %>"  referrerpolicy="no-referrer" alt="User Avatar"><%= post.userName %><div class ="date"> <%= post.createdAt.toLocaleDateString() %></div><br>
                     <br><%= post.content %></div>
                     <br>
                     <div class = "comments"><h3>Comments:</h3></div>
@@ -47,7 +47,7 @@
                                     </div>
                                 <% } %>
                                 <div class ="comment-content">
-                                    <div><img src="<%= comment.userAvatar %>"  referrerpolicy="no-referrer" alt="User Avatar"><%= comment.userName %> - <%= post.createdAt.toLocaleDateString() %></div>
+                                    <div><img src="<%= comment.userAvatar %>"  referrerpolicy="no-referrer" alt="User Avatar"><%= comment.userName %><div class ="date"> <%= post.createdAt.toLocaleDateString() %></div>
                                         <br>
                                     <div><%= comment.content %></div><br>
                                 </div>
