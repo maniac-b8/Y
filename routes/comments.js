@@ -5,7 +5,7 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 
 // POST comment
-router.post('/:id/comments', commentCtrl.create);
+router.post('/:id/comments', ensureLoggedIn, commentCtrl.create);
 // DELETE comment
 router.delete('/:postId/comments/:commentId', ensureLoggedIn, commentCtrl.delete);
 
