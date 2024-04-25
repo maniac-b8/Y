@@ -21,8 +21,7 @@ async function index(req, res) {
 }
 async function show(req, res) {
   const post = await Post.findById(req.params.id);
-  // const comments = await Comment.find({ post: post._id })  for comments
-  res.render("posts/show", { title: "All Posts", post }); // add comments after post at end
+  res.render("posts/show", { title: "All Posts", post });
 }
 
 async function create(req, res) {
@@ -30,6 +29,7 @@ async function create(req, res) {
     if (req.body[key] === "") delete req.body[key];
   }
   try {
+    
     req.body.author = req.user._id;
     req.body.userName = req.user.name;
     req.body.userAvatar = req.user.avatar;
