@@ -222,12 +222,20 @@ border-radius: 20px;
   text-align: left;
 }
 .comment-form button {
-  background-color: #999;
+  background-color: #333;
   border-radius: 20px;
   font-size: 10px;
+  position: absolute;
 }
 
-.comment-form input {
+.comment-form button:hover {
+  background-color: #999;
+}
+
+
+.comment-form textarea {
+  width: 30%; 
+  height: 50px;
   border-radius: 20px;
   background-color: #333;
   color: white

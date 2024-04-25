@@ -34,7 +34,7 @@
                     <ul>
                         <% post.comments.forEach(function(comment) { %>
                             <li>
-                                <% if (currentUser && (currentUser._id.equals(post.comments.author) || currentUser._id.equals(post.author))) { %>
+                                <% if (currentUser && (currentUser._id.equals(post.comments.author) || currentUser._id.equals(comment.author))) { %>
                                     <div class="dropdown">
                                         <button class="dropdown-btn">&#8942;</button>
                                         <div class="dropdown-content">
@@ -56,7 +56,7 @@
                 <% if (currentUser) { %>
                     <div class ="comment-form">
                         <form action="/posts/<%= post._id %>/comments" method="POST">
-                            <input type="text" name="content" placeholder="Add a comment">
+                            <textarea name="content" rows="4" placeholder="Add a comment"></textarea>
                             <button type="submit">Add Comment</button>
                         </form>
                     </div>

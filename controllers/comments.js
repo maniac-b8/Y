@@ -29,7 +29,7 @@ module.exports = {
   async function createComment(req, res) {
     const post = await Post.findById(req.params.id);
 
-    req.body.user = req.user._id;
+    req.body.author = req.user._id;
     req.body.userName = req.user.name;
     req.body.userAvatar = req.user.avatar;
   
