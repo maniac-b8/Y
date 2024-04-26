@@ -1,7 +1,7 @@
 # Y
-Welcome to Y. my version of a thread posting app. please feel free to join up using google and start posting today!
+Welcome to Y. my version of a thread posting app. Please feel free to join up using google and start posting today!
 
-# Screenshot
+# Screenshots
 
 ![alt text](public/images/ss1.jpg)
 ![alt text](public/images/ss2.jpg)
