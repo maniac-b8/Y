@@ -1,5 +1,4 @@
 const Post = require("../models/post");
-const User = require("../models/user");
 
 module.exports = {
   index,
@@ -30,7 +29,6 @@ async function create(req, res) {
     if (req.body[key] === "") delete req.body[key];
   }
   try {
-
     req.body.author = req.user._id;
     req.body.userName = req.user.name;
     req.body.userAvatar = req.user.avatar;
@@ -44,25 +42,27 @@ async function create(req, res) {
 }
 
 async function likePost(req, res) {
-    try {
-      const post = await Post.findById(req.params.id);
-      if (!post) {
-        return res.status(404).send("Post not found.");
-      }
-      const alreadyLiked = post.likes.some(userId => userId.equals(req.user._id));
-  
-      if (alreadyLiked) {
-        post.likes = post.likes.filter(userId => !userId.equals(req.user._id));
-      } else {
-        post.likes.push(req.user._id);
-      }
-      await post.save();
-      res.redirect(`/posts`);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Internal Server Error");
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).send("Post not found.");
     }
+    const alreadyLiked = post.likes.some((userId) =>
+      userId.equals(req.user._id)
+    );
+
+    if (alreadyLiked) {
+      post.likes = post.likes.filter((userId) => !userId.equals(req.user._id));
+    } else {
+      post.likes.push(req.user._id);
+    }
+    await post.save();
+    res.redirect(`/posts`);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
   }
+}
 
 async function deletePost(req, res) {
   try {
