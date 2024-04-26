@@ -7,10 +7,12 @@ Welcome to Y. my version of a thread posting app. Please feel free to join up us
 ![alt text](public/images/ss2.jpg)
 
 # Technologies Used
-- Express
+- Express.js
 - JavaScript
 - HTML
 - CSS
+- MongoDB
+- Google OAuth
 
 # Getting Started
 
